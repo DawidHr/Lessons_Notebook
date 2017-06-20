@@ -1,10 +1,11 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DataBase {
-
+	
 private static String url = "jdbc:sqlite:lessonsDB.db";
 private static String driver ="org.sqlite.JDBC";
 private Connection conn;
@@ -27,7 +28,17 @@ public DataBase() {
         e.printStackTrace();
     }
 
-    createTables();
+
 }
 
+
+public ResultSet viewLessons() {
+	String query = "select * from subject";
+	try {
+		ResultSet rs = stat.executeQuery(query);
+		return rs;
+	}
+	catch(Exception e) {
+	return null;}
+}
 }

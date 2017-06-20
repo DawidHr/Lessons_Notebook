@@ -25,15 +25,28 @@ public class tableSubject extends AbstractTableModel {
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
-		return opis.size();
+		return (opis.size()+1);
 	}
 
+	public Class<?> getColumnClass(int c) {
+		return javax.swing.JButton.class;
+	}
+	
 	@Override
 	public Object getValueAt(int arg0, int arg1) {
-		String nameOfClass = opis.get(arg0).getNameOfClass();
+		if(arg0==0) {
+			JButton button = new JButton("Dodawanie");
+			button.addActionListener(listener1);
+			
+			return button.getText();
+			//return "Pies";
+		}
+		else {
+		String nameOfClass = opis.get(arg0-1).getNameOfClass();
 		JButton button = new JButton(nameOfClass);
 		button.addActionListener(listener);
-		return button;
+		return button; }
+		
 	}
 
 	public String getColumnName(int c) {
@@ -46,4 +59,9 @@ public class tableSubject extends AbstractTableModel {
 		};
 	};
 	
+	ActionListener listener1 = new ActionListener() {
+		public void actionPerformed(java.awt.event.ActionEvent e) {
+			
+		};
+	};
 }

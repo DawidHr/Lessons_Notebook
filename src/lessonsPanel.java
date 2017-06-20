@@ -1,4 +1,6 @@
 import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -15,14 +17,40 @@ public class lessonsPanel {
 
 	public lessonsPanel() {
 
-		/*DataBase baza = new DataBase();
-		records = baza.pobierzNaprawe(1);
+		DataBase baza = new DataBase();
+		ResultSet rs = baza.viewLessons();
+		changeResultSetToList(rs);
+		applicatioSize();
+		table = new tableSubject(1, records);
+		tab = new JTable(table);
+		tab.setRowHeight(90);
+		tab.setPreferredScrollableViewportSize(new Dimension(650, 500));
+		JScrollPane pane = new JScrollPane(tab);
+		panel.add(pane);
+		/*records = baza.pobierzNaprawe(1);
 		table = new tableSubject(2, records);
 		tab = new JTable(table);
 		tab.setRowHeight(90);
 		tab.setPreferredScrollableViewportSize(new Dimension(600, 300));
 		JScrollPane pane = new JScrollPane(tab);
 		panel.add(pane);*/
+	}
+	public void changeResultSetToList(ResultSet rs){
+		try{while(rs.next()) {
+			records.add(new Subject(rs.getInt("id"), rs.getString("subject")));
+		System.out.println(rs.getString("className"));
+		}}
+		catch(Exception e) {
+			
+		}
+	}
+	
+	public Dimension applicatioSize() {
+		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+		System.out.println(d.getWidth());
+		System.out.println(d.getHeight());
+		return d; 
+		
 	}
 
 	public JPanel getPanel() {
