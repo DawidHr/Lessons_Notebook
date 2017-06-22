@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -40,5 +41,18 @@ public ResultSet viewLessons() {
 	}
 	catch(Exception e) {
 	return null;}
+}
+
+
+public void addLessons(String subject) {
+	try {String query = "insert into subject(subject) where(?)";
+	PreparedStatement stat = conn.prepareStatement(query);
+		stat.setString(1, subject);
+		int r = stat.executeUpdate();
+		System.out.println(r);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 }
 }

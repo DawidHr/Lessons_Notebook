@@ -3,6 +3,7 @@ import java.awt.Toolkit;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -14,9 +15,9 @@ public class lessonsPanel {
 	JTable tab;
 	ArrayList<Subject> records = new ArrayList<>();
 	String[] opisKolumn = { "Tytu³", "Opis" };
-
-	public lessonsPanel() {
-
+JFrame frame;
+	public lessonsPanel(JFrame frame) {
+this.frame=frame;
 		DataBase baza = new DataBase();
 		ResultSet rs = baza.viewLessons();
 		changeResultSetToList(rs);
@@ -27,6 +28,9 @@ public class lessonsPanel {
 		tab.setPreferredScrollableViewportSize(new Dimension(650, 500));
 		JScrollPane pane = new JScrollPane(tab);
 		panel.add(pane);
+		int a = tab.getSelectedRow();
+		int c =tab.getSelectedColumnCount();
+		System.out.println(a+" "+c);
 		/*records = baza.pobierzNaprawe(1);
 		table = new tableSubject(2, records);
 		tab = new JTable(table);

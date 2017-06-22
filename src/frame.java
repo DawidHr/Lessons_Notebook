@@ -30,7 +30,7 @@ public Dimension getScreenDimension() {
 }
 
 public void main() {
-	panel = new lessonsPanel().getPanel();
+	panel = new lessonsPanel(this).getPanel();
 	add(panel);
 }
 

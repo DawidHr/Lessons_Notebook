@@ -2,6 +2,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
 
 public class tableSubject extends AbstractTableModel {
@@ -55,13 +56,14 @@ public class tableSubject extends AbstractTableModel {
 
 	ActionListener listener = new ActionListener() {
 		public void actionPerformed(java.awt.event.ActionEvent e) {
-			
+			System.out.println("hej ho");
 		};
 	};
 	
 	ActionListener listener1 = new ActionListener() {
 		public void actionPerformed(java.awt.event.ActionEvent e) {
-			
+			System.out.println("hej ho1");
 		};
 	};
+	
 }
