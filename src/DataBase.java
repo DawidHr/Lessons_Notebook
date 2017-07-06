@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class DataBase {
 	
-private static String url = "jdbc:sqlite:lessonsDB.db";
+private static String url = "jdbc:sqlite:lessonsDB.sqlite";
 private static String driver ="org.sqlite.JDBC";
 private Connection conn;
 private Statement stat;
@@ -44,14 +44,20 @@ public ResultSet viewLessons() {
 }
 
 
-public void addLessons(String subject) {
-	try {String query = "insert into subject(subject) where(?)";
-	PreparedStatement stat = conn.prepareStatement(query);
-		stat.setString(1, subject);
-		int r = stat.executeUpdate();
+public void addLessons(String subject1) {
+	
+	
+	
+	
+	try {
+	
+		String query = "insert into subject(subject) VALUES(?)";
+		PreparedStatement statt = conn.prepareStatement(query);
+		statt.setString(1, subject1);
+		int r = statt.executeUpdate();
 		System.out.println(r);
 	} catch (SQLException e) {
-		// TODO Auto-generated catch block
+		System.out.println("Blady w bazie");
 		e.printStackTrace();
 	}
 }

@@ -26,27 +26,29 @@ public class tableSubject extends AbstractTableModel {
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
-		return (opis.size()+1);
+		return (opis.size());
 	}
 
-	public Class<?> getColumnClass(int c) {
+	/*public Class<?> getColumnClass(int c) {
 		return javax.swing.JButton.class;
-	}
+	}*/
 	
 	@Override
 	public Object getValueAt(int arg0, int arg1) {
 		if(arg0==0) {
-			JButton button = new JButton("Dodawanie");
+			/*JButton button = new JButton("Dodawanie");
 			button.addActionListener(listener1);
 			
-			return button.getText();
-			//return "Pies";
+			return button.getText();*/
+			return opis.get(arg0).getNameOfClass().toString();
+			
 		}
 		else {
-		String nameOfClass = opis.get(arg0-1).getNameOfClass();
+		/*String nameOfClass = opis.get(arg0-1).getNameOfClass();
 		JButton button = new JButton(nameOfClass);
 		button.addActionListener(listener);
-		return button; }
+		return button;*/
+			return opis.get(arg0).getNameOfClass().toString();}
 		
 	}
 
