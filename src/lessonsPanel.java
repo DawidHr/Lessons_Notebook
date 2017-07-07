@@ -21,15 +21,14 @@ public class lessonsPanel {
 	ArrayList<Subject> records = new ArrayList<>();
 	String[] opisKolumn = { "Tytu³", "Opis" };
 JFrame frame;
+DataBase baza;
 	public lessonsPanel(JFrame frame) {
 this.frame=frame;
-		DataBase baza = new DataBase();
+		baza = new DataBase();
 		ResultSet rs = baza.viewLessons();
+		records.add(new Subject(1, "Dodaj"));
 		changeResultSetToList(rs);
 		applicatioSize();
-		records.add(new Subject(1, "Dodaj"));
-		records.add(new Subject(2, "Alina"));
-		
 		table = new tableSubject(1, records);
 		tab = new JTable(table);
 		tab.setRowHeight(90);
@@ -41,10 +40,28 @@ this.frame=frame;
 		panel.add(pane);
 		
 	}
+	
+	public lessonsPanel(JFrame frame, DataBase db) {
+		this.frame=frame;
+		baza=db;
+		ResultSet rs = baza.viewLessons();
+		records.add(new Subject(1, "Dodaj"));
+		changeResultSetToList(rs);
+		applicatioSize();
+		table = new tableSubject(1, records);
+		tab = new JTable(table);
+		tab.setRowHeight(90);
+		tab.setPreferredScrollableViewportSize(new Dimension(650, 500));
+		JScrollPane pane = new JScrollPane(tab);
+		SelectionListener listener = new SelectionListener(frame, baza, panel, tab, records);
+		tab.getSelectionModel().addListSelectionListener(listener);
+		
+		panel.add(pane);
+	}
 	public void changeResultSetToList(ResultSet rs){
 		try{while(rs.next()) {
 			records.add(new Subject(rs.getInt("id"), rs.getString("subject")));
-		System.out.println(rs.getString("className"));
+		//System.out.println(rs.getString("className"));
 		}}
 		catch(Exception e) {
 			System.out.println("Pusta");

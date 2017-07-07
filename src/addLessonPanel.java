@@ -46,11 +46,12 @@ JButton save = new JButton("Zapisz");
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 		save();	
+		panel.setVisible(false);
+		lessonsPanel panel1 = new lessonsPanel(frame, db);
 		}
 	};
 	
 	public void save() {
-		DataBase dbb = new DataBase();
-		dbb.addLessons(field.getText().toString());
+		db.addLessons(field.getText().toString());
 	}
 }

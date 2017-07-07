@@ -55,6 +55,7 @@ public void addLessons(String subject1) {
 		PreparedStatement statt = conn.prepareStatement(query);
 		statt.setString(1, subject1);
 		int r = statt.executeUpdate();
+		//statt.execute();
 		System.out.println(r);
 	} catch (SQLException e) {
 		System.out.println("Blady w bazie");
